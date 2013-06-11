@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
   	sign_out
   	super
   end
+
+  def update
+  	@user = User.find(params[:id])
+  end
 end
