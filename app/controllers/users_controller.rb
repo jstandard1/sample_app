@@ -3,8 +3,9 @@ before_filter :signed_in_user, only: [:edit, :update, :index]
 before_filter :correct_user,   only: [:edit, :update]
 before_filter :admin_user,     only: [:destroy]
 
-	def show
+	  def show
   		@user = User.find(params[:id])
+      @microposts = @user.microposts.paginate(page: params[:page])
   	end
 
   	def new
@@ -48,15 +49,6 @@ before_filter :admin_user,     only: [:destroy]
     end
 
     private
-      def signed_in_user
-        unless signed_in?
-          store_location
-          flash[:notice] = "Please sign in."
-          redirect_to signin_url
-        end  
-        #redirect_to signin_url, notice: "Please sign in." unless signed_in?
-      end
-
       def correct_user
         @user = User.find(params[:id])
         redirect_to(root_path) unless current_user?(@user)
