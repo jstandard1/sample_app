@@ -52,11 +52,22 @@ describe "UserPages" do
 		it {should have_selector('h1', text: user.name)}
 		it {should have_selector('title', text: user.name)}
 
+		describe "pagination" do
+			before(:all){40.times {FactoryGirl.create(:micropost, user: user, content: "Food")}}
+			after(:all){User.delete_all}
+
+			it {should have_selector('div.pagination')}
+		end
+
 		describe "microposts" do
 			it {should have_content(m1.content)}
 			it {should have_content(m2.content)}
 			it {should have_content(user.microposts.count)}
 		end
+
+		describe "micropost delete links" do
+			it {should_not have_link('delete')}
+		end		
 	end
 	
 	describe "edit" do

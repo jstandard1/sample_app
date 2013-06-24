@@ -34,6 +34,14 @@ describe "Static pages" do
           page.should have_selector("li##{item.id}", text: item.content)
         end
       end
+
+      # cannot get this to properly destroy posts, 2 microposts created in before block cause 1 micropost test to fail
+      # it "should pluralize post numbers" do
+      #   FactoryGirl.create(:micropost, user: user, content: "Food")
+      #   page.should have_content("1 micropost")
+      #   2.times {FactoryGirl.create(:micropost, user: user, content: "Food")}
+      #   page.should have_content("2 microposts")
+      # end
     end
   end
 
