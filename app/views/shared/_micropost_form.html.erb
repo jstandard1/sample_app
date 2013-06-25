@@ -1,7 +1,7 @@
 <%= form_for(@micropost) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
-		<%= f.text_area :content, placeholder: "Yosup, write it", name: "limitedtextarea", onkeydown: "limitText(this.form.limitedtextarea, this.form.countdown, 140);", onkeyup: "limitText(this.form.limitedtextarea, this.form.countdown, 140);" %>
+		<%= f.text_area :content, placeholder: "Yosup, write it", onkeydown: "limitText(this.form.micropost_content, this.form.countdown, 140);", onkeyup: "limitText(this.form.micropost_content, this.form.countdown, 140);" %>
 	</div>
 	<font size="1">You have <input readonly type="text" name="countdown" style="width: 40px;" value="140"> characters left.</font>
 	<%= f.submit "Post", class: 'btn btn-large btn-primary' %>
